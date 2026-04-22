@@ -1,93 +1,146 @@
 # Viscom Maintenance Tracking System v2.0
 
-## Özellikler
-- 5 (veya daha fazla) makine için ayrı ayrı bakım takibi
-- ODS tablosuyla birebir aynı görevler (Monthly / 3-Monthly / 6-Monthly / Yearly)
-- Her makine için yıllık görünüm ve ilerleme takibi
-- Dönem bazlı kayıt (tarih + teknisyen + notlar)
-- Yazdırma: tek makine veya tüm makineler (ODS tablosuyla aynı format)
-- Makine ekleme/düzenleme/silme (Settings sayfası)
+A web-based maintenance tracking system for Viscom machines with periodic scheduling, reporting, and print-ready outputs.
 
 ---
 
-## Kurulum (XAMPP / Linux PHP + MySQL)
+## 🚀 Features
 
-### 1. Veritabanı Oluştur
+* Separate maintenance tracking for 5 (or more) machines
+* Tasks identical to the ODS table (Monthly / 3-Monthly / 6-Monthly / Yearly)
+* Yearly overview and progress tracking per machine
+* Period-based records (date + technician + notes)
+* Printing: single machine or all machines (same format as ODS table)
+* Add / Edit / Delete machines via Settings panel
+
+---
+
+## ⚙️ Installation (XAMPP / Linux PHP + MySQL)
+
+### 1. Create Database
+
 ```sql
--- phpMyAdmin veya MySQL komut satırı:
-SOURCE /path/to/viscom_maintenance/db/schema.sql
+SOURCE /path/to/viscom_maintenance/db/schema.sql;
 ```
 
-### 2. config.php Ayarla
+---
+
+### 2. Configure Database Connection
+
+Edit `config.php`:
+
 ```php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'viscom_maintenance');
-define('DB_USER', 'root');     // DB kullanıcı adınız
-define('DB_PASS', '');         // DB şifreniz
+define('DB_USER', 'root');
+define('DB_PASS', '');
 ```
 
-### 3. Dosyaları Web Sunucusuna Kopyala
+---
+
+### 3. Copy Project Files
+
+**XAMPP:**
+
 ```
-htdocs/viscom_maintenance/   (XAMPP)
-/var/www/html/viscom_maintenance/   (Linux Apache)
+htdocs/viscom_maintenance/
 ```
 
-### 4. Tarayıcıda Aç
+**Linux (Apache):**
+
+```
+/var/www/html/viscom_maintenance/
+```
+
+---
+
+### 4. Run in Browser
+
 ```
 http://localhost/viscom_maintenance/
 ```
 
 ---
 
-## Dosya Yapısı
+## 📁 Project Structure
+
 ```
 viscom_maintenance/
-├── config.php          → Veritabanı bağlantısı
-├── index.php           → Ana sayfa - 5 makine özeti
-├── machine.php         → Makine detay + kayıt formu
-├── print_machine.php   → Tek makine yazdırma
-├── print_all.php       → Tüm makineler yazdırma
-├── settings.php        → Makine yönetimi
+├── config.php
+├── index.php
+├── machine.php
+├── print_machine.php
+├── print_all.php
+├── settings.php
 ├── css/
 │   └── style.css
 └── db/
-    └── schema.sql      → Veritabanı şeması
+    └── schema.sql
 ```
 
 ---
 
-## Makine İsimleri Değiştirme
-Settings sayfasından (⚙ Settings / Machines) herhangi bir makineyi
-düzenleyebilir, silebilir veya yeni makine ekleyebilirsiniz.
+## ⚙️ Machine Management
+
+From the **Settings (⚙)** page you can:
+
+* Add new machines
+* Edit machine names
+* Delete machines
 
 ---
 
-## Bakım Görevleri
-ODS tablosundaki tüm görevler `maintenance_tasks` tablosuna aktarıldı:
+## 🛠 Maintenance Tasks
 
-**Monthly (12x/yıl):**
-- Viscom PC → Database Backup Taken
-- Viscom Camera and Motor → Checked For Health
-- Viscom Machine → PCB Board Rails Cleared
-- Viscom Machine → Calibration Cross Checked
-- Viscom Compressed Air → 4-6 Bar Checked
+All tasks are stored in the `maintenance_tasks` table.
 
-**3 Monthly (4x/yıl - Mar/Jun/Sep/Dec):**
-- Viscom Camera → Grayscale Value Calibration Done
-- Viscom Machine → Transport System Contact Area Checked
-- Viscom PC and Camera → Fan Vent Filters Cleaned
+---
 
-**6 Monthly (2x/yıl - Jun/Dec):**
-- Viscom Machine → Geometric Calibration Done
-- Viscom Camera → 3D Camera For Health In Software Checked
-- Viscom Machine → Wear Of Cable Reels Checked
-- Viscom Machine → Positioning Unit Lubricated
-- Viscom Machine → Screws Checked with Torque Wrench
-- Viscom Machine → PCB Board Stoper Checked
-- Viscom Machine → PCB Board Conveyor Belt Checked
+### 📅 Monthly (12x/year)
 
-**Yearly (1x/yıl):**
-- Viscom Machine → All Electrical Cable Of Connection Checked
-- Viscom Machine → Sensors and Switches Checked
-- Viscom Machine → Magnet Checked
-- Viscom Machine → Positioning Unit Lubricated
+* Database Backup Taken
+* Camera and Motor Health Check
+* PCB Rails Cleaning
+* Calibration Verification
+* Compressed Air Check (4–6 Bar)
+
+---
+
+### 📅 3-Monthly (Mar / Jun / Sep / Dec)
+
+* Grayscale Calibration
+* Transport System Check
+* Fan Filter Cleaning
+
+---
+
+### 📅 6-Monthly (Jun / Dec)
+
+* Geometric Calibration
+* 3D Camera Software Check
+* Cable Reel Wear Check
+* Positioning Unit Lubrication
+* Screw Torque Check
+* PCB Stopper Check
+* Conveyor Belt Check
+
+---
+
+### 📅 Yearly
+
+* Electrical Cable Inspection
+* Sensors & Switches Check
+* Magnet Check
+* Positioning Unit Lubrication
+
+---
+
+## 📄 License
+
+This project is for internal/company use. Modify as needed.
+
+---
+
+## 👨‍💻 Author
+
+Developed for Viscom machine maintenance tracking.
